@@ -6,12 +6,12 @@ interface Props {
 
 export function PageHeader({ title, subtitle, action }: Props) {
   return (
-    <div className="flex items-start justify-between mb-6">
+    <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between mb-8">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
-        {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
+        <h1 className="text-3xl font-semibold text-slate-900 tracking-tight">{title}</h1>
+        {subtitle && <p className="text-sm text-slate-500 mt-2 max-w-2xl">{subtitle}</p>}
       </div>
-      {action && <div>{action}</div>}
+      {action && <div className="min-w-0">{action}</div>}
     </div>
   )
 }

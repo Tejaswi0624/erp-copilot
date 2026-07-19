@@ -32,21 +32,20 @@ export function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-600 mb-4">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-lg">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-[1.75rem] bg-gradient-to-br from-indigo-500 to-violet-600 shadow-lg shadow-indigo-500/20 mx-auto mb-4">
             <Bot className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">ERP AI Copilot</h1>
-          <p className="text-gray-500 text-sm mt-1">Sign in to your workspace</p>
+          <h1 className="text-3xl font-semibold text-white">ERP AI Copilot</h1>
+          <p className="text-slate-400 text-sm mt-2">Securely sign in to your intelligent ERP workspace.</p>
         </div>
 
         <div className="card p-8">
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Username</label>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Username</label>
               <input
                 className="input"
                 type="text"
@@ -57,10 +56,10 @@ export function Login() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">Password</label>
               <div className="relative">
                 <input
-                  className="input pr-10"
+                  className="input pr-12"
                   type={showPw ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -69,7 +68,7 @@ export function Login() {
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-gray-600"
+                  className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-600"
                 >
                   {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -77,17 +76,19 @@ export function Login() {
             </div>
 
             {error && (
-              <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>
+              <div className="rounded-2xl bg-rose-50 border border-rose-200 px-4 py-3 text-sm text-rose-700">
+                {error}
+              </div>
             )}
 
-            <button type="submit" disabled={loading} className="btn-primary w-full py-2.5">
+            <button type="submit" disabled={loading} className="btn-primary w-full py-3">
               {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-gray-100">
-            <p className="text-xs text-gray-500 font-medium mb-2">Demo accounts</p>
-            <div className="grid grid-cols-2 gap-2">
+          <div className="mt-8 pt-6 border-t border-slate-200/80">
+            <p className="text-xs uppercase tracking-[0.22em] text-slate-400 font-semibold mb-3">Demo accounts</p>
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { u: 'admin', p: 'admin123', label: 'Admin' },
                 { u: 'finance', p: 'finance123', label: 'Finance' },
@@ -98,7 +99,7 @@ export function Login() {
                   key={acc.u}
                   type="button"
                   onClick={() => { setUsername(acc.u); setPassword(acc.p) }}
-                  className="text-xs px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-colors font-medium"
+                  className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-indigo-50 hover:border-indigo-200 transition"
                 >
                   {acc.label}
                 </button>

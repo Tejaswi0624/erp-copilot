@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+
 import { Layout } from '@/components/layout/Layout'
+
 import { Login } from '@/pages/Login'
 import { Dashboard } from '@/pages/Dashboard'
 import { Finance } from '@/pages/Finance'
@@ -8,14 +10,15 @@ import { Inventory } from '@/pages/Inventory'
 import { Sales } from '@/pages/Sales'
 import { CRM } from '@/pages/CRM'
 import { Manufacturing } from '@/pages/Manufacturing'
+
 import { Copilot } from '@/pages/Copilot'
+import { CopilotChat } from '@/pages/CopilotChat'
 
 export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
 
-      {/* Protected layout */}
       <Route element={<Layout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/finance" element={<Finance />} />
@@ -24,10 +27,14 @@ export default function App() {
         <Route path="/sales" element={<Sales />} />
         <Route path="/crm" element={<CRM />} />
         <Route path="/manufacturing" element={<Manufacturing />} />
-        <Route path="/copilot" element={<Copilot />} />
+
+        {/* Analytics Dashboard */}
+        <Route path="/analytics" element={<Copilot />} />
+
+        {/* AI Copilot Chat */}
+        <Route path="/copilot" element={<CopilotChat />} />
       </Route>
 
-      {/* Catch-all */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

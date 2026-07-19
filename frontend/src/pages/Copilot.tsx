@@ -98,7 +98,7 @@ export function Copilot() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Analytics & Reports" subtitle="Live business intelligence across all modules" />
+      <PageHeader title="ERP Chatbot" subtitle="Ask the AI assistant for help across your ERP modules" />
 
       {/* ── KPI Summary Row ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">

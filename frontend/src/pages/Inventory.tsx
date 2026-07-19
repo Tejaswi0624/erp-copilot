@@ -45,10 +45,10 @@ export function Inventory() {
     <div className="space-y-6">
       <PageHeader title="Inventory" subtitle="Track products, stock levels, and purchase orders" />
 
-      <div className="flex gap-1 p-1 bg-gray-100 rounded-xl w-fit flex-wrap">
+      <div className="tab-group">
         {tabs.map(t => (
           <button key={t.id} onClick={() => setTab(t.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === t.id ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+            className={`tab-btn ${tab === t.id ? 'tab-btn-active' : 'tab-btn-inactive'}`}>
             {t.label}
           </button>
         ))}

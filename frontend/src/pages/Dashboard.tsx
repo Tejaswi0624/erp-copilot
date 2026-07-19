@@ -110,56 +110,60 @@ export function Dashboard() {
 
       {/* Recent activity tables */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="card p-5">
-          <h3 className="font-semibold text-gray-900 mb-4">Recent Invoices</h3>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Invoice</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Customer</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Amount</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.recent_invoices.map((inv: Record<string, unknown>) => (
-                <tr key={inv.id as number} className="border-b border-gray-50 hover:bg-gray-50">
-                  <td className="py-2.5 px-1 font-mono text-xs text-indigo-600">{inv.invoice_number as string}</td>
-                  <td className="py-2.5 px-1 text-gray-700">{inv.customer_name as string}</td>
-                  <td className="py-2.5 px-1 text-gray-700">{formatCurrency(inv.total as number)}</td>
-                  <td className="py-2.5 px-1">
-                    <span className={getStatusColor(inv.status as string)}>{capitalize(inv.status as string)}</span>
-                  </td>
+        <div className="card p-6">
+          <h3 className="font-semibold text-slate-950 mb-4">Recent Invoices</h3>
+          <div className="overflow-x-auto rounded-[1.5rem] border border-slate-200/80 bg-white/90 shadow-sm">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Invoice</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Customer</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Amount</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.recent_invoices.map((inv: Record<string, unknown>) => (
+                  <tr key={inv.id as number} className="border-b border-slate-100 hover:bg-slate-50">
+                    <td className="py-3 px-4 font-mono text-xs text-indigo-600">{inv.invoice_number as string}</td>
+                    <td className="py-3 px-4 text-slate-700">{inv.customer_name as string}</td>
+                    <td className="py-3 px-4 text-slate-700">{formatCurrency(inv.total as number)}</td>
+                    <td className="py-3 px-4">
+                      <span className={getStatusColor(inv.status as string)}>{capitalize(inv.status as string)}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="card p-5">
-          <h3 className="font-semibold text-gray-900 mb-4">Recent Orders</h3>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100">
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Order</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Date</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Total</th>
-                <th className="text-left py-2 px-1 text-xs font-medium text-gray-500">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.recent_orders.map((order: Record<string, unknown>) => (
-                <tr key={order.id as number} className="border-b border-gray-50 hover:bg-gray-50">
-                  <td className="py-2.5 px-1 font-mono text-xs text-indigo-600">{order.order_number as string}</td>
-                  <td className="py-2.5 px-1 text-gray-500 text-xs">{formatDate(order.order_date as string)}</td>
-                  <td className="py-2.5 px-1 text-gray-700">{formatCurrency(order.total as number)}</td>
-                  <td className="py-2.5 px-1">
-                    <span className={getStatusColor(order.status as string)}>{capitalize(order.status as string)}</span>
-                  </td>
+        <div className="card p-6">
+          <h3 className="font-semibold text-slate-950 mb-4">Recent Orders</h3>
+          <div className="overflow-x-auto rounded-[1.5rem] border border-slate-200/80 bg-white/90 shadow-sm">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Order</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Date</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Total</th>
+                  <th className="text-left py-4 px-4 text-xs font-semibold uppercase tracking-[0.02em] text-slate-500">Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.recent_orders.map((order: Record<string, unknown>) => (
+                  <tr key={order.id as number} className="border-b border-slate-100 hover:bg-slate-50">
+                    <td className="py-3 px-4 font-mono text-xs text-indigo-600">{order.order_number as string}</td>
+                    <td className="py-3 px-4 text-slate-500 text-xs">{formatDate(order.order_date as string)}</td>
+                    <td className="py-3 px-4 text-slate-700">{formatCurrency(order.total as number)}</td>
+                    <td className="py-3 px-4">
+                      <span className={getStatusColor(order.status as string)}>{capitalize(order.status as string)}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
