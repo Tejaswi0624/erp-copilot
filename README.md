@@ -91,10 +91,19 @@ When deploying the backend for a full-stack app, use a separate backend host and
 
 ## Notes for reviewers
 
-- The frontend is a complete React/Vite app with module routing and an AI chat page
-- The backend is a FastAPI app with seeded demo data and JWT auth
-- To run the full app locally, both backend and frontend must be running
-- `backend/.env.example` is provided for easy setup
+- The frontend is a complete React/Vite app with module routing and an AI chat page.
+- The backend is a FastAPI app with seeded demo data, JWT auth, and a modular ERP API.
+- To run the full app locally, both backend and frontend must be running.
+- `backend/.env.example` is provided for easy setup.
+- The current Vercel deployment proves the frontend build and static hosting.
+
+## Review checklist
+
+1. Clone the repo and inspect code quality in `backend/` and `frontend/`.
+2. Run `backend` locally with `uvicorn app.main:app --reload`.
+3. Run `frontend` locally with `npm run dev`.
+4. Confirm the frontend loads at `http://localhost:5173` and the backend at `http://127.0.0.1:8000`.
+5. Verify AI chat by opening `/copilot` in the app and checking API calls to `/api/copilot/chat`.
 
 ## Helpful links
 
