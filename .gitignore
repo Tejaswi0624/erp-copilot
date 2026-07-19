@@ -30,3 +30,5 @@ frontend/.cache/
 .vscode/
 .idea/
 *.swp
+.vercel
+.env*
