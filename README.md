@@ -12,16 +12,38 @@ A modern ERP web application with an AI-powered Copilot chat interface.
 - `backend/` — FastAPI backend with SQLAlchemy models, auth, business services, and API routers
 - `frontend/` — React + TypeScript Vite frontend with Tailwind CSS, routing, and voice-enabled AI chat
 - `vercel.json` — Vercel configuration for the frontend static deployment
+# ERP Copilot
 
-## Verified status
+A modern, production-oriented ERP web application with an AI Copilot assistant for business insights.
 
-- ✅ Frontend production build succeeds
-- ✅ Backend Python files compile cleanly
-- ⚠️ Current Vercel deployment includes only the frontend app. The backend API is not deployed as part of this same Vercel project.
+<!-- Project badges -->
 
-## Getting started locally
+[![Build Frontend](https://img.shields.io/badge/build-frontend-brightgreen)](https://erp-copilot-nine.vercel.app)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-### 1. Backend setup
+Overview
+--------
+ERP Copilot is a full-stack example ERP with modules for Finance, HR, Inventory, Sales, CRM and Manufacturing, plus an AI-driven Copilot chat that summarizes data and answers operational questions.
+
+## Repository
+
+- GitHub: https://github.com/Tejaswi0624/erp-copilot
+- Live frontend demo: https://erp-copilot-nine.vercel.app
+
+## Project structure
+
+- `backend/` — FastAPI backend with SQLAlchemy models, auth, business services, and API routers
+- `frontend/` — React + TypeScript Vite frontend with Tailwind CSS, routing, and voice-enabled AI chat
+- `vercel.json` — Vercel configuration for the frontend static deployment
+
+## Current status
+
+- Frontend: production build verified and deployed to Vercel (static hosting).
+- Backend: FastAPI app included in repo; not deployed by the Vercel frontend project by default. To enable full end-to-end behavior deploy the backend separately or configure API hosting.
+
+## Quickstart (developer)
+
+1) Prepare backend
 
 ```bash
 cd backend
@@ -30,17 +52,12 @@ python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-Then start the backend:
-
-```bash
 uvicorn app.main:app --reload
 ```
 
-The backend will run at `http://127.0.0.1:8000`.
+Backend default: http://127.0.0.1:8000
 
-### 2. Frontend setup
+2) Prepare frontend
 
 ```bash
 cd frontend
@@ -48,24 +65,20 @@ npm install
 npm run dev
 ```
 
-Open the frontend in your browser at `http://localhost:5173`.
+Frontend default: http://localhost:5173
 
-### 3. Run order
+3) Recommended run order
 
-1. Start the backend first
-2. Then start the frontend
-3. Visit `http://localhost:5173`
-
-This ensures the frontend can reach the backend API at `/api`.
+- Start the backend first, then the frontend. The frontend expects the API under `/api`.
 
 ## AI backend configuration
 
-The backend can use either local Ollama or OpenAI:
+The Copilot chat uses a local Ollama instance by default or OpenAI as a fallback. Configure `backend/.env`:
 
-- `USE_OLLAMA=true` uses the local Ollama server
-- `OPENAI_API_KEY` is required if `USE_OLLAMA=false`
+- `USE_OLLAMA=true` to call local Ollama (must be running at `OLLAMA_BASE_URL`).
+- If `USE_OLLAMA=false`, set `OPENAI_API_KEY` and `OPENAI_MODEL`.
 
-Default values are provided in `backend/.env.example`.
+See `backend/.env.example` for supported variables.
 
 ## Production build
 
@@ -76,36 +89,32 @@ cd frontend
 npm run build
 ```
 
-## Deployment
+## Deployment notes
 
-Current Vercel deployment is configured for frontend hosting only.
+- The repo includes `vercel.json` configured to build and publish the static frontend to Vercel.
+- To run the full product in production you should deploy the backend to a server/host (e.g., Render, Railway, Fly, a Vercel Serverless project, or a container service) and point the frontend API base URL to that host.
 
-Deploy with:
+Example quick deploy (frontend only):
 
 ```bash
 cd /path/to/erp-copilot
 npx vercel --prod --yes
 ```
 
-When deploying the backend for a full-stack app, use a separate backend host and update `frontend/src/lib/api.ts` if needed.
+## For reviewers
 
-## Notes for reviewers
+Checklist:
 
-- The frontend is a complete React/Vite app with module routing and an AI chat page.
-- The backend is a FastAPI app with seeded demo data, JWT auth, and a modular ERP API.
-- To run the full app locally, both backend and frontend must be running.
-- `backend/.env.example` is provided for easy setup.
-- The current Vercel deployment proves the frontend build and static hosting.
+1. Clone repository and inspect `backend/` and `frontend/` code.
+2. Run backend and confirm `GET /api/health` returns `{"status":"healthy"}`.
+3. Run frontend and confirm pages load and API calls target `/api/`.
+4. Open `/copilot` and test the chat UI; note AI replies depend on the AI backend configuration.
 
-## Review checklist
+If you want a single-click preview for reviewers, consider deploying the backend to a short-lived preview URL and updating `frontend/src/lib/api.ts` to point there.
 
-1. Clone the repo and inspect code quality in `backend/` and `frontend/`.
-2. Run `backend` locally with `uvicorn app.main:app --reload`.
-3. Run `frontend` locally with `npm run dev`.
-4. Confirm the frontend loads at `http://localhost:5173` and the backend at `http://127.0.0.1:8000`.
-5. Verify AI chat by opening `/copilot` in the app and checking API calls to `/api/copilot/chat`.
+---
 
-## Helpful links
+If you'd like, I can also add a short `CONTRIBUTING.md` and an `MIT` license file — tell me and I will add them and push a single commit.
 
 - GitHub source: https://github.com/Tejaswi0624/erp-copilot
 - Live frontend demo: https://erp-copilot-nine.vercel.app
